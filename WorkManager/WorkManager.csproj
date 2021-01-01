@@ -66,6 +66,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Data\IRepository.cs" />
+    <Compile Include="Models\Task.cs" />
+    <Compile Include="Data\TaskRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
     <Compile Include="Migrations\202012291553313_createUserTable.cs" />
     <Compile Include="Migrations\202012291553313_createUserTable.designer.cs">
@@ -81,7 +83,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VIews\TaskCreation.xaml.cs">
+      <DependentUpon>TaskCreation.xaml</DependentUpon>
+    </Compile>
     <Page Include="VIews\Auth.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VIews\TaskCreation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

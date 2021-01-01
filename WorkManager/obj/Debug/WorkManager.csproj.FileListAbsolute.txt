@@ -19,3 +19,26 @@ C:\Users\PC COMPUTER\Desktop\STUDIA\Programowanie Obiektowe\.projekt\WorkManager
 C:\Users\PC COMPUTER\Desktop\STUDIA\Programowanie Obiektowe\.projekt\WorkManager\WorkManager\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\PC COMPUTER\Desktop\STUDIA\Programowanie Obiektowe\.projekt\WorkManager\WorkManager\obj\Debug\WorkManager.csproj.CopyComplete
 C:\Users\PC COMPUTER\Desktop\STUDIA\Programowanie Obiektowe\.projekt\WorkManager\WorkManager\obj\Debug\WorkManager.Migrations.createUserTable.resources
+C:\Users\tomek\WorkManager\WorkManager\bin\Debug\WorkManager.exe.config
+C:\Users\tomek\WorkManager\WorkManager\bin\Debug\WorkManager.exe
+C:\Users\tomek\WorkManager\WorkManager\bin\Debug\WorkManager.pdb
+C:\Users\tomek\WorkManager\WorkManager\bin\Debug\EntityFramework.dll
+C:\Users\tomek\WorkManager\WorkManager\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\tomek\WorkManager\WorkManager\bin\Debug\EntityFramework.xml
+C:\Users\tomek\WorkManager\WorkManager\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.csprojAssemblyReference.cache
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\VIews\Auth.g.cs
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\App.g.cs
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager_MarkupCompile.cache
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager_MarkupCompile.lref
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\VIews\Auth.baml
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.g.resources
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.Migrations.createUserTable.resources
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.Properties.Resources.resources
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.csproj.GenerateResource.cache
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.csproj.CoreCompileInputs.cache
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.csproj.CopyComplete
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.exe
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.pdb
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\VIews\TaskCreation.g.cs
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\VIews\TaskCreation.baml
