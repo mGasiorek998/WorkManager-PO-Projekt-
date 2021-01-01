@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WorkManager.VIews"
         mc:Ignorable="d"
-        Title="Tasks" Height="450" Width="800">
+        Title="Tasks" Height="609.945" Width="1047.397">
     <Grid Margin="0,0,2,-3">
-        <ListView HorizontalAlignment="Left" Height="191" Margin="10,218,0,0" VerticalAlignment="Top" Width="772">
+        <ListView x:Name="TaskList" HorizontalAlignment="Left" Height="315" Margin="20,257,0,0" VerticalAlignment="Top" Width="1007">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" Width="130"/>
+                    <GridViewColumn Header="Title" Width="180"/>
                     <GridViewColumn Header="Description" Width="520"/>
-                    <GridViewColumn Header="Due Date" Width="115"/>
+                    <GridViewColumn Header="Due Date" Width="auto"/>
+                    <GridViewColumn Header="Status" Width="150"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -22,7 +23,7 @@
             x:Name="AddTaskButton" 
             Content="ADD" 
             HorizontalAlignment="Left" 
-            Margin="663,75,0,0" 
+            Margin="892,84,0,0" 
             VerticalAlignment="Top" 
             Width="107" 
             Height="83" 
@@ -33,7 +34,7 @@
             x:Name="AddTitle"
             HorizontalAlignment="Left" 
             Height="83" 
-            Margin="20,34,0,0" 
+            Margin="33,55,0,0" 
             TextWrapping="Wrap" 
             VerticalAlignment="Top" 
             Width="119" 
@@ -44,28 +45,28 @@
             x:Name="AddDescription"
             HorizontalAlignment="Left" 
             Height="163" 
-            Margin="159,34,0,0" 
+            Margin="219,55,0,0" 
             TextWrapping="Wrap"  
             VerticalAlignment="Top" 
-            Width="298" 
+            Width="369" 
             RenderTransformOrigin="-0.004,0.507"/>
 
         <!--Due date calendar-->
         <Calendar
             x:Name="DueDateCalendar"
             HorizontalAlignment="Left" 
-            Margin="478,31,0,0" 
+            Margin="629,47,0,0" 
             VerticalAlignment="Top" 
-            Height="171" 
-            Width="168"/>
+            Height="184" 
+            Width="184"/>
 
         <!--Top Box labels-->
-        <Label Content="Title" HorizontalAlignment="Left" Margin="20,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.365,0.701"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="159,13,0,0" VerticalAlignment="Top"/>
-        <Label Content="Due date" HorizontalAlignment="Left" Margin="478,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.362,0.44"/>
+        <Label Content="Title" HorizontalAlignment="Left" Margin="33,24,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.12,0.63"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="219,29,0,0" VerticalAlignment="Top"/>
+        <Label Content="Due date" HorizontalAlignment="Left" Margin="629,21,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.362,0.44"/>
 
         <!--List label-->
-        <Label Content="Existing Tasks" HorizontalAlignment="Left" Margin="10,192,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.523,1.542"/>
+        <Label Content="Existing Tasks" HorizontalAlignment="Left" Margin="20,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.523,1.542"/>
 
 
     </Grid>

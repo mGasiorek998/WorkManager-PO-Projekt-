@@ -35,10 +35,9 @@ namespace WorkManager.VIews
         {
             //filling the tasks required fields
             string title, description;
-            DateTime dueDate;
             title = AddTitle.Text;
             description = AddDescription.Text;
-            dueDate = DueDateCalendar.DisplayDate;
+            DateTime dueDate = (DateTime) DueDateCalendar.SelectedDate;
 
             //checking if the fields are filled
             bool isTaskValid = ValidateTask(title, description, dueDate);
@@ -49,12 +48,14 @@ namespace WorkManager.VIews
                 {
                     TaskTitle = title,
                     TaskDesc = description,
+                    CreationDate = DateTime.Now,
                     DueDate = dueDate
+                    // TODO: user
                 };
                 taskRepo.Add(newTask);
                 taskRepo.Save();
 
-                MessageBox.Show($"Task {newTask} created succesfully!");
+                MessageBox.Show($"Task created succesfully!");
             }
         }
 

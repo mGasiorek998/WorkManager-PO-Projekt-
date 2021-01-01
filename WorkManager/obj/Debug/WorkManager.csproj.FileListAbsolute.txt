@@ -42,3 +42,4 @@ C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.exe
 C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.pdb
 C:\Users\tomek\WorkManager\WorkManager\obj\Debug\VIews\TaskCreation.g.cs
 C:\Users\tomek\WorkManager\WorkManager\obj\Debug\VIews\TaskCreation.baml
+C:\Users\tomek\WorkManager\WorkManager\obj\Debug\WorkManager.Migrations.createTaskTable.resources
