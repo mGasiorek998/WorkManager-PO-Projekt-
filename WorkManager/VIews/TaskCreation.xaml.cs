@@ -16,6 +16,15 @@ using WorkManager.Models;
 
 namespace WorkManager.VIews
 {
+    //possible types of task statuses
+    public enum TaskStatus
+    {
+        New,
+        InProgress,
+        Postponed,
+        Done
+    }
+
     /// <summary>
     /// Interaction logic for TaskCreation.xaml
     /// </summary>
@@ -31,7 +40,8 @@ namespace WorkManager.VIews
             this.taskRepo = new TaskRepository(this.context);
         }
 
-        private void AddTaskButton_Click(object sender, RoutedEventArgs e)
+        //implementation of the button that adds tasks
+        public void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
             //filling the tasks required fields
             string title, description;
@@ -39,7 +49,7 @@ namespace WorkManager.VIews
             description = AddDescription.Text;
             DateTime dueDate = (DateTime) DueDateCalendar.SelectedDate;
 
-            //checking if the fields are filled
+            //creating a task if fields are filled
             bool isTaskValid = ValidateTask(title, description, dueDate);
 
             if (isTaskValid)
@@ -49,16 +59,18 @@ namespace WorkManager.VIews
                     TaskTitle = title,
                     TaskDesc = description,
                     CreationDate = DateTime.Now,
-                    DueDate = dueDate
+                    DueDate = dueDate,
+                    Status = TaskStatus.New.ToString()
                     // TODO: user
                 };
                 taskRepo.Add(newTask);
                 taskRepo.Save();
 
-                MessageBox.Show($"Task created succesfully!");
+                MessageBox.Show("Task created succesfully!");
             }
         }
 
+        //validating if fields are filled
         private bool ValidateTask(string title, string description, DateTime dueDate)
         {
             if (title == "" || description == "")
@@ -67,7 +79,6 @@ namespace WorkManager.VIews
                 return false;
             }
             else return true;
-
         }
     }
 }

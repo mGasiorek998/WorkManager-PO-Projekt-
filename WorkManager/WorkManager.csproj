@@ -70,6 +70,10 @@
     <Compile Include="Migrations\202101011848274_createTaskTable.designer.cs">
       <DependentUpon>202101011848274_createTaskTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101012152493_addStatusColumnToTaskTable.cs" />
+    <Compile Include="Migrations\202101012152493_addStatusColumnToTaskTable.designer.cs">
+      <DependentUpon>202101012152493_addStatusColumnToTaskTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Task.cs" />
     <Compile Include="Data\TaskRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
@@ -118,6 +122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101011848274_createTaskTable.resx">
       <DependentUpon>202101011848274_createTaskTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101012152493_addStatusColumnToTaskTable.resx">
+      <DependentUpon>202101012152493_addStatusColumnToTaskTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

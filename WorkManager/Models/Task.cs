@@ -12,7 +12,6 @@ namespace WorkManager.Models
         [Key]
         public int Id { get; set; }
 
-        // TODO: required
         public User User { get; set; }
 
         [Required]
@@ -27,5 +26,8 @@ namespace WorkManager.Models
 
         [Required]
         public DateTime DueDate { get; set; }
+
+        [Required]
+        public String Status { get; set; }
     }
 }
