@@ -30,20 +30,18 @@ namespace WorkManager.VIews
     /// </summary>
     public partial class TaskCreation : Window
     {
-        private wmDBContext context;
         private TaskRepository taskRepo;
 
         public TaskCreation()
         {
+            this.taskRepo = new TaskRepository();
             InitializeComponent();
-            this.context = new wmDBContext();
-            this.taskRepo = new TaskRepository(this.context);
         }
 
         //implementation of the button that adds tasks
         public void AddTaskButton_Click(object sender, RoutedEventArgs e)
         {
-            //filling the tasks required fields
+            //binding gui fields to values
             string title, description;
             title = AddTitle.Text;
             description = AddDescription.Text;
@@ -67,6 +65,7 @@ namespace WorkManager.VIews
                 taskRepo.Save();
 
                 MessageBox.Show("Task created succesfully!");
+                reloadTaskList();
             }
         }
 
@@ -79,6 +78,18 @@ namespace WorkManager.VIews
                 return false;
             }
             else return true;
+        }
+
+
+        private void ListOfTasks_Initialized(object sender, EventArgs e)
+        {
+            reloadTaskList();
+        }
+
+        private void reloadTaskList()
+        {
+            var tasks = taskRepo.GetAll(); // TODO: dla konkretnego usera
+            ListOfTasks.ItemsSource = tasks;
         }
     }
 }

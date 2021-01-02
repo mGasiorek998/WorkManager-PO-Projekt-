@@ -11,9 +11,9 @@ namespace WorkManager.Data
     {
         private readonly wmDBContext _context;
 
-        public TaskRepository(wmDBContext context)
+        public TaskRepository()
         {
-            this._context = context;
+            this._context = wmDBContext.GetInstance();
         }
 
         public bool Add(Models.Task entity)

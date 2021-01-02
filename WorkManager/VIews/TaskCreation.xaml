@@ -7,15 +7,24 @@
         mc:Ignorable="d"
         Title="Tasks" Height="609.945" Width="1047.397">
     <Grid Margin="0,0,2,-3">
-        <ListView x:Name="TaskList" HorizontalAlignment="Left" Height="315" Margin="20,257,0,0" VerticalAlignment="Top" Width="1007">
+        <!--list of tasks-->
+        <ListView 
+            x:Name="ListOfTasks" 
+            HorizontalAlignment="Left" 
+            Height="201" 
+            Margin="20,257,0,0" 
+            VerticalAlignment="Top" 
+            Width="1007" Initialized="ListOfTasks_Initialized">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" Width="180"/>
-                    <GridViewColumn Header="Description" Width="520"/>
-                    <GridViewColumn Header="Due Date" Width="auto"/>
-                    <GridViewColumn Header="Status" Width="150"/>
+                    <GridViewColumn Header="Title" Width="180" DisplayMemberBinding="{Binding TaskTitle}"/>
+                    <GridViewColumn Header="Description" Width="500" DisplayMemberBinding="{Binding TaskDesc}"/>
+                    <GridViewColumn Header="Assignee" Width="150" DisplayMemberBinding="{Binding User}"/>
+                    <GridViewColumn Header="Due Date" Width="100" DisplayMemberBinding="{Binding DueDate}"/>
+                    <GridViewColumn Header="Status" Width="auto" DisplayMemberBinding="{Binding Status}"/>
                 </GridView>
             </ListView.View>
+            <ComboBox Height="53" Width="6"/>
         </ListView>
 
         <!--ADD button-->
@@ -33,22 +42,22 @@
         <TextBox 
             x:Name="AddTitle"
             HorizontalAlignment="Left" 
-            Height="83" 
-            Margin="33,55,0,0" 
+            Height="112" 
+            Margin="33,51,0,0" 
             TextWrapping="Wrap" 
             VerticalAlignment="Top" 
-            Width="119" 
+            Width="151" 
             RenderTransformOrigin="-0.004,0.507"/>
 
         <!--Description TextBox-->
         <TextBox 
             x:Name="AddDescription"
             HorizontalAlignment="Left" 
-            Height="163" 
-            Margin="219,55,0,0" 
+            Height="161" 
+            Margin="219,51,0,0" 
             TextWrapping="Wrap"  
             VerticalAlignment="Top" 
-            Width="369" 
+            Width="373" 
             RenderTransformOrigin="-0.004,0.507"/>
 
         <!--Due date calendar-->
@@ -67,6 +76,8 @@
 
         <!--List label-->
         <Label Content="Existing Tasks" HorizontalAlignment="Left" Margin="20,226,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.523,1.542"/>
+        <ComboBox HorizontalAlignment="Left" Margin="33,498,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="199,498,0,0" VerticalAlignment="Top" Width="75"/>
 
 
     </Grid>

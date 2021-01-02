@@ -29,5 +29,6 @@ namespace WorkManager.Models
 
         [Required]
         public String Status { get; set; }
+
     }
 }

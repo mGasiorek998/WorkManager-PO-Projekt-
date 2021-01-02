@@ -24,7 +24,7 @@ namespace WorkManager.VIews {
 
         public Auth() {
             InitializeComponent();
-            this.context = new wmDBContext();
+            this.context = wmDBContext.GetInstance();
             this.userRepo = new UserRepository(this.context);
         }
 
