@@ -21,5 +21,7 @@ namespace WorkManager.Models {
         [Required]
         [MaxLength(20)]
         public String Password { get; set; }
+
+        public new string ToString => Username;
     }
 }

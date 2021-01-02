@@ -31,11 +31,13 @@ namespace WorkManager.VIews
     public partial class TaskCreation : Window
     {
         private TaskRepository taskRepo;
+        private User currentUser;
 
         public TaskCreation()
         {
             this.taskRepo = new TaskRepository();
             InitializeComponent();
+            currentUser = new UserRepository().GetById(2); // TODO
         }
 
         //implementation of the button that adds tasks
@@ -58,8 +60,8 @@ namespace WorkManager.VIews
                     TaskDesc = description,
                     CreationDate = DateTime.Now,
                     DueDate = dueDate,
-                    Status = TaskStatus.New.ToString()
-                    // TODO: user
+                    Status = TaskStatus.New.ToString(),
+                    User = currentUser,
                 };
                 taskRepo.Add(newTask);
                 taskRepo.Save();
@@ -90,6 +92,23 @@ namespace WorkManager.VIews
         {
             var tasks = taskRepo.GetAll(); // TODO: dla konkretnego usera
             ListOfTasks.ItemsSource = tasks;
+        }
+
+        private void StatusDropMenu_Initialized(object sender, EventArgs e)
+        {
+            StatusDropMenu.ItemsSource = Enum.GetValues(typeof(TaskStatus)).Cast<TaskStatus>();
+            StatusDropMenu.SelectedItem = TaskStatus.Done;
+        }
+
+        private void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            Models.Task selecedtask = (Models.Task)ListOfTasks.SelectedItem;
+            TaskStatus selectedstatus = (TaskStatus)StatusDropMenu.SelectedItem;
+
+            selecedtask.Status = selectedstatus.ToString();
+            taskRepo.Save();
+            MessageBox.Show("Status changed succesfully!");
+            reloadTaskList();
         }
     }
 }

@@ -19,13 +19,11 @@ namespace WorkManager.VIews {
     /// Logika interakcji dla klasy Auth.xaml
     /// </summary>
     public partial class Auth : Window {
-        private wmDBContext context;
         private UserRepository userRepo;
 
         public Auth() {
             InitializeComponent();
-            this.context = wmDBContext.GetInstance();
-            this.userRepo = new UserRepository(this.context);
+            this.userRepo = new UserRepository();
         }
 
         private void RegisterButton_Click( object sender, RoutedEventArgs e ) {
