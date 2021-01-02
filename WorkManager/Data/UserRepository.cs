@@ -10,8 +10,8 @@ namespace WorkManager.Data {
 
         private readonly wmDBContext _context;
 
-        public UserRepository() {
-            this._context = wmDBContext.GetInstance();
+        public UserRepository( wmDBContext context ) {
+            this._context = context;
         }
 
         public bool Add( User entity ) {

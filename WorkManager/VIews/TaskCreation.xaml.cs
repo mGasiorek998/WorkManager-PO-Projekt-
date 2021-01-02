@@ -30,15 +30,20 @@ namespace WorkManager.VIews
     /// </summary>
     public partial class TaskCreation : Window
     {
+        private wmDBContext context;
         private TaskRepository taskRepo;
         private User currentUser;
 
-        public TaskCreation()
+        public TaskCreation(User user)
         {
-            this.taskRepo = new TaskRepository();
+            this.context = new wmDBContext();
+            this.taskRepo = new TaskRepository(context);
+            this.currentUser = user;
+            
             InitializeComponent();
-            currentUser = new UserRepository().GetById(2); // TODO
         }
+
+
 
         //implementation of the button that adds tasks
         public void AddTaskButton_Click(object sender, RoutedEventArgs e)
@@ -47,22 +52,35 @@ namespace WorkManager.VIews
             string title, description;
             title = AddTitle.Text;
             description = AddDescription.Text;
-            DateTime dueDate = (DateTime) DueDateCalendar.SelectedDate;
+            DateTime dueDate;
+            
+            // Check if correct dueDate was passed:
+            try {
+                dueDate = (DateTime)DueDateCalendar.SelectedDate;
+            } catch(InvalidOperationException err) {
+                MessageBox.Show("NIE ZAZNACZONO DATY TERMINU!");
+                return;
+            }
+            
 
             //creating a task if fields are filled
             bool isTaskValid = ValidateTask(title, description, dueDate);
 
             if (isTaskValid)
             {
-                var newTask = new Models.Task
-                {
-                    TaskTitle = title,
-                    TaskDesc = description,
-                    CreationDate = DateTime.Now,
-                    DueDate = dueDate,
-                    Status = TaskStatus.New.ToString(),
-                    User = currentUser,
-                };
+                //Buid a new Task
+                TaskBuilder builder = new TaskBuilder();
+
+                builder.SetTaskTitle(title)
+                    .SetTaskDesc(description)
+                    .SetCreationDate()
+                    .SetDueDate(dueDate)
+                    .SetUserId(currentUser.Id)
+                    .SetStatus(TaskStatus.New.ToString());
+
+                Models.Task newTask = builder.Build();
+
+                // Add it to the repo:
                 taskRepo.Add(newTask);
                 taskRepo.Save();
 
@@ -90,7 +108,18 @@ namespace WorkManager.VIews
 
         private void reloadTaskList()
         {
-            var tasks = taskRepo.GetAll(); // TODO: dla konkretnego usera
+            // Get all logged in user tasks:
+            var tasks = taskRepo.GetUsersTasks(this.currentUser.Id);
+            
+            // Check if any task has 'DONE' Status if so delete it from database:
+            foreach (Models.Task task in tasks) {
+                if (Enum.Parse(typeof(TaskStatus), task.Status).Equals(TaskStatus.Done)) {
+                    taskRepo.RemoveTask(task);
+                }
+            }
+            this.taskRepo.Save();
+
+            // Attached them to ListView
             ListOfTasks.ItemsSource = tasks;
         }
 
@@ -105,6 +134,11 @@ namespace WorkManager.VIews
             Models.Task selecedtask = (Models.Task)ListOfTasks.SelectedItem;
             TaskStatus selectedstatus = (TaskStatus)StatusDropMenu.SelectedItem;
 
+            // Check if any task was makred:
+            if(selecedtask == null) {
+                MessageBox.Show("NIE WYBRANO TASKU!");
+                return;
+            }
             selecedtask.Status = selectedstatus.ToString();
             taskRepo.Save();
             MessageBox.Show("Status changed succesfully!");

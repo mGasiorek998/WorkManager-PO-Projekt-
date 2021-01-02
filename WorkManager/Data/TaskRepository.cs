@@ -11,9 +11,9 @@ namespace WorkManager.Data
     {
         private readonly wmDBContext _context;
 
-        public TaskRepository()
+        public TaskRepository( wmDBContext context )
         {
-            this._context = wmDBContext.GetInstance();
+            this._context = context;
         }
 
         public bool Add(Models.Task entity)
@@ -30,6 +30,17 @@ namespace WorkManager.Data
         public Models.Task GetById(int id)
         {
             return this._context.Tasks.Find(id);
+        }
+
+        public void RemoveTask(Models.Task entity) {
+            this._context.Tasks.Remove(entity);
+        }
+
+        public IEnumerable<Models.Task> GetUsersTasks(int userId) {
+            var query = this._context.Tasks
+                .Where(t => t.userID == userId);
+
+            return query.ToList();
         }
 
         public void Save()

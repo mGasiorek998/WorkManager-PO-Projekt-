@@ -74,6 +74,10 @@
     <Compile Include="Migrations\202101012152493_addStatusColumnToTaskTable.designer.cs">
       <DependentUpon>202101012152493_addStatusColumnToTaskTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101022140471_UpdateTasksTable.cs" />
+    <Compile Include="Migrations\202101022140471_UpdateTasksTable.designer.cs">
+      <DependentUpon>202101022140471_UpdateTasksTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Task.cs" />
     <Compile Include="Data\TaskRepository.cs" />
     <Compile Include="Data\UserRepository.cs" />
@@ -82,8 +86,10 @@
       <DependentUpon>202012291553313_createUserTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\TaskBuilder.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Data\wmDBContext.cs" />
+    <Compile Include="Models\UserBuilder.cs" />
     <Compile Include="VIews\Auth.xaml.cs">
       <DependentUpon>Auth.xaml</DependentUpon>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202101012152493_addStatusColumnToTaskTable.resx">
       <DependentUpon>202101012152493_addStatusColumnToTaskTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101022140471_UpdateTasksTable.resx">
+      <DependentUpon>202101022140471_UpdateTasksTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

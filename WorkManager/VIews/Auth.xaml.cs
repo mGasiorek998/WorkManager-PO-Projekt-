@@ -19,11 +19,15 @@ namespace WorkManager.VIews {
     /// Logika interakcji dla klasy Auth.xaml
     /// </summary>
     public partial class Auth : Window {
+        private wmDBContext context;
         private UserRepository userRepo;
 
         public Auth() {
+            this.context = new wmDBContext();
+            this.userRepo = new UserRepository(context);
+
             InitializeComponent();
-            this.userRepo = new UserRepository();
+            
         }
 
         private void RegisterButton_Click( object sender, RoutedEventArgs e ) {
@@ -38,16 +42,21 @@ namespace WorkManager.VIews {
 
             // If Form is valid add new user to database:
             if(isFormValid) { 
-                var newUser = new Models.User {
-                    Username = username,
-                    Email = email,
-                    Password = password
-                };
+                // Build a new user and add it to the database:
+                UserBuilder builder = new UserBuilder();
+
+                builder.SetEmail(email).SetUsername(username).SetPassword(password);
+                User newUser = builder.Build();
                 
                 userRepo.Add(newUser);
                 userRepo.Save();
 
                 MessageBox.Show($"{username} created!");
+
+                // Redirect user to the Task Mamanger:
+                TaskCreation tc = new TaskCreation(newUser);
+                tc.Show();
+                this.Close();
             }
         }
 
@@ -108,6 +117,7 @@ namespace WorkManager.VIews {
             }
             return false;
         }
+
         private bool ValidatePassword( String value ) {
             /* 
                 Function is checking if password is beetwien 5 and 20 characters.
@@ -125,16 +135,18 @@ namespace WorkManager.VIews {
             email = LoginEmail.Text;
             password = LoginPassword.Password.ToString();
 
-
-
             User user = CheckIfUserExists(email);
 
+            // CHECK IF USER PASSED CORRECT VALUES:
             if(user == null) {
-                MessageBox.Show("User does not exist!");
+                MessageBox.Show("Niepoprawna nazwa użytkownika albo hasło!");
             } else if (user.Password == password) {
-                MessageBox.Show("USER LOGGED IN");
+                MessageBox.Show("Loguje...");
+                TaskCreation taskCreation = new TaskCreation(user);
+                taskCreation.Show();
+                this.Close();
             } else {
-                MessageBox.Show("INVALID USERNAME OR PASSWORD!");
+                MessageBox.Show("Niepoprawna nazwa użytkownika albo hasło!");
             }
 
 

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace WorkManager.Models {
-    class User {
+    public class User {
         [Key]
         public int Id {get; set;}
         
@@ -21,7 +21,5 @@ namespace WorkManager.Models {
         [Required]
         [MaxLength(20)]
         public String Password { get; set; }
-
-        public new string ToString => Username;
     }
 }
