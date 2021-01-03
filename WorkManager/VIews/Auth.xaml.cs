@@ -1,20 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WorkManager.Data;
 using WorkManager.Models;
 
-namespace WorkManager.VIews {
+namespace WorkManager.VIews
+{
     /// <summary>
     /// Logika interakcji dla klasy Auth.xaml
     /// </summary>
@@ -139,14 +129,14 @@ namespace WorkManager.VIews {
 
             // CHECK IF USER PASSED CORRECT VALUES:
             if(user == null) {
-                MessageBox.Show("Niepoprawna nazwa użytkownika albo hasło!");
+                MessageBox.Show("Incorrect username or password!");
             } else if (user.Password == password) {
-                MessageBox.Show("Loguje...");
+                MessageBox.Show("Logging in...Click OK");
                 TaskCreation taskCreation = new TaskCreation(user);
                 taskCreation.Show();
                 this.Close();
             } else {
-                MessageBox.Show("Niepoprawna nazwa użytkownika albo hasło!");
+                MessageBox.Show("Incorrect username or password!");
             }
 
 

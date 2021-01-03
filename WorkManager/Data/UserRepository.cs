@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WorkManager.Models;
 
-namespace WorkManager.Data {
+namespace WorkManager.Data
+{
     class UserRepository : IRepository<User> {
 
         private readonly wmDBContext _context;

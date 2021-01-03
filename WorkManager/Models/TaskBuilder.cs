@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace WorkManager.Models {
+namespace WorkManager.Models
+{
     class TaskBuilder {
         public int userID;
         public String taskTitle;
@@ -43,7 +40,7 @@ namespace WorkManager.Models {
         }
 
         public Task Build() {
-            return new Models.Task {
+            return new Task {
                 TaskTitle = this.taskTitle,
                 TaskDesc = this.taskDesc,
                 CreationDate = this.creationDate,

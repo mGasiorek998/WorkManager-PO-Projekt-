@@ -1,16 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WorkManager.Data;
 using WorkManager.Models;
 
@@ -58,7 +48,7 @@ namespace WorkManager.VIews
             try {
                 dueDate = (DateTime)DueDateCalendar.SelectedDate;
             } catch(InvalidOperationException err) {
-                MessageBox.Show("NIE ZAZNACZONO DATY TERMINU!");
+                MessageBox.Show("Check the due date!");
                 return;
             }
             
@@ -78,14 +68,14 @@ namespace WorkManager.VIews
                     .SetUserId(currentUser.Id)
                     .SetStatus(TaskStatus.New.ToString());
 
-                Models.Task newTask = builder.Build();
+                Task newTask = builder.Build();
 
                 // Add it to the repo:
                 taskRepo.Add(newTask);
                 taskRepo.Save();
 
-                MessageBox.Show("Task created succesfully!");
-                reloadTaskList();
+                MessageBox.Show("Task created successfully!");
+                ReloadTaskList();
             }
         }
 
@@ -103,16 +93,16 @@ namespace WorkManager.VIews
 
         private void ListOfTasks_Initialized(object sender, EventArgs e)
         {
-            reloadTaskList();
+            ReloadTaskList();
         }
 
-        private void reloadTaskList()
+        private void ReloadTaskList()
         {
             // Get all logged in user tasks:
             var tasks = taskRepo.GetUsersTasks(this.currentUser.Id);
             
             // Check if any task has 'DONE' Status if so delete it from database:
-            foreach (Models.Task task in tasks) {
+            foreach (Task task in tasks) {
                 if (Enum.Parse(typeof(TaskStatus), task.Status).Equals(TaskStatus.Done)) {
                     taskRepo.RemoveTask(task);
                 }
@@ -131,18 +121,18 @@ namespace WorkManager.VIews
 
         private void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
         {
-            Models.Task selecedtask = (Models.Task)ListOfTasks.SelectedItem;
+            Task selecedtask = (Task)ListOfTasks.SelectedItem;
             TaskStatus selectedstatus = (TaskStatus)StatusDropMenu.SelectedItem;
 
             // Check if any task was makred:
             if(selecedtask == null) {
-                MessageBox.Show("NIE WYBRANO TASKU!");
+                MessageBox.Show("Choose a task to update!");
                 return;
             }
             selecedtask.Status = selectedstatus.ToString();
             taskRepo.Save();
             MessageBox.Show("Status changed succesfully!");
-            reloadTaskList();
+            ReloadTaskList();
         }
     }
 }
