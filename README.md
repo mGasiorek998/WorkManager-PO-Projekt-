@@ -1,24 +1,38 @@
 # WorkManager
 ## Projekt zaliczeniowy "Programowanie Obiektowe"
 
-### --FUNKCJONALNOŚCI WORKMANAGER--
-
+## Spis Treści
+1. Opis aplikacji
 1. Tworzenie i autoryzacja użytkownika
    1. Rejestracja
    1. Logowanie
-
 1. Zarządzanie Taskami
    1. Dodawanie zadań
    1. Wyświetlanie zadań
    1. Edycja statsów
+   
+### OPIS APLIKACJI
+   Aplikacja umożliwa lepszą organizację pracy. Użytkownik w prosty sposób będzie mógł dodawać do swojej listy zadania, a potem zmieniać ich statusy. 
 
-  >Aplikacja pozwala zalogowanym użytkownikom na kontrolę własnych zadań służbowych poprzez magazynowanie danych o nich oraz możliwość interakcji z nimi.
+### TWORZENIE I AUTORYZACJA UŻYTKOWNIKA
+   #### Rejestracja
+   Za nim użytkownich będzie mógł zacząć korzystać z Work Managera będzie on musiał założyć kotno podając:
+   *Email
+   *Nazwę użytkownika
+   *Hasło
+   
+   Aplikacja weryfikuje podane przez użytkownia dane tak aby upewnić się, że hasło jest wystarczająco mocne i czy e-mail jest prawidłowy.
+   Jeżeli wszystkie dane zostały podane poprawnie i jeżeli podany e-mail nie istnieje w bazie użytkownik zostaje stworzony.
+   Użytkownik po pomyślnej rejestracji od razu zostanie przeniesony do okna z polami tekstowymi oraz pustą listą, na której docelowo znajdą się zadania.
+   
+   #### Logowanie
+   Aby zalogować się na swoje konto użytkownik musi podać:
+   *Email
+   *Hasło
+   
+   Po zweryfikowaniu czy dany użytkownik istnieje w bazie zostaje on przekierowany do swojej listy.
 
-//opis rejestracji/logowania/autoryzacji
-
-
-
-  Użytkownik po pierwszym pomyślnym zalogowaniu dostrzeże okno z polami tekstowymi oraz pustą listą, na której docelowo znajdą się zadania.
+  
 
 2.1 Dodawanie zadań
 Poprzez wypełnienie na formularzu TaskCreation pól tekstowych Title i Description oraz wybranie terminu, przed którym zrealizowany powinien zostać dany cel, użytkownik może dodać zadanie. Wszystkie z wymienionych wartości są wartościami wymaganymi, a aplikacja nie dopuści do przypadku, w którym dodane zostaje zagadanienie o niepełnych danych. 
