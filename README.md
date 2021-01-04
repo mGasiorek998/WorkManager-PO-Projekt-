@@ -3,6 +3,9 @@
 
 ## Spis Treści
 1. Opis aplikacji
+1. Komunikacja aplikacji z bazą danych
+   1. Modele
+   1. Repozytoria
 1. Tworzenie i autoryzacja użytkownika
    1. Rejestracja
    1. Logowanie
@@ -15,12 +18,17 @@
 ### OPIS APLIKACJI
    Aplikacja umożliwa lepszą organizację pracy. Użytkownik w prosty sposób będzie mógł dodawać do swojej listy zadania, a potem zmieniać ich statusy. 
 
+### KOMUNIKACJA APLIKACJI Z BAZĄ DANCYH
+   #### Modele
+
+   #### Repozytoria
+
 ### REJESTRACJA I AUTORYZACJA UŻYTKOWNIKA
    #### Rejestracja
    Za nim użytkownich będzie mógł zacząć korzystać z Work Managera będzie on musiał założyć kotno podając:
-   *Email
-   *Nazwę użytkownika
-   *Hasło
+   * Email
+   * Nazwę użytkownika
+   * Hasło
    
    Aplikacja weryfikuje podane przez użytkownia dane tak aby upewnić się, że hasło jest wystarczająco mocne i czy e-mail jest prawidłowy.
    Jeżeli wszystkie dane zostały podane poprawnie i jeżeli podany e-mail nie istnieje w bazie użytkownik zostaje stworzony.
@@ -99,7 +107,28 @@
    Aby zalogować się na swoje konto użytkownik musi podać:
    * Email
    * Hasło
-   
+   ```cs
+      private void LoginButton_Click( object sender, RoutedEventArgs e ) {
+            // Get the Form inputs values:
+            String email, password;
+            email = LoginEmail.Text;
+            password = LoginPassword.Password.ToString();
+
+            User user = CheckIfUserExists(email);
+
+            // CHECK IF USER PASSED CORRECT VALUES:
+            if(user == null) {
+                MessageBox.Show("Niepoprawna nazwa użytkownika albo hasło!");
+            } else if (user.Password == password) {
+                MessageBox.Show("Loguje...");
+                TaskCreation taskCreation = new TaskCreation(user);
+                taskCreation.Show();
+                this.Close();
+            } else {
+                MessageBox.Show("Niepoprawna nazwa użytkownika albo hasło!");
+            }
+        }
+   ```
    Po zweryfikowaniu czy dany użytkownik istnieje w bazie zostaje on przekierowany do swojej listy.
 
 ### ZARZĄDZANIE ZADANIAMI
