@@ -13,7 +13,7 @@
    1. Dodawanie zadań
    1. Wyświetlanie zadań
    1. Edycja statsów
-1.Użyte Technologie
+1. Użyte Technologie
    
 ### OPIS APLIKACJI
    Aplikacja umożliwa lepszą organizację pracy. Użytkownik w prosty sposób będzie mógł dodawać do swojej listy zadania, a potem zmieniać ich statusy. 
