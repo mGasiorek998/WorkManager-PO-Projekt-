@@ -12,7 +12,7 @@
    1. Wyświetlanie zadań
    1. Edycja statsów
 
-  Aplikacja pozwala zalogowanym użytkownikom na kontrolę własnych zadań służbowych poprzez magazynowanie danych o nich oraz możliwość interakcji z nimi.
+  >Aplikacja pozwala zalogowanym użytkownikom na kontrolę własnych zadań służbowych poprzez magazynowanie danych o nich oraz możliwość interakcji z nimi.
 
 //opis rejestracji/logowania/autoryzacji
 
