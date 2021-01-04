@@ -3,16 +3,14 @@
 
 ### --FUNKCJONALNOŚCI WORKMANAGER--
 
-1. Item 1
-1. Item 2
-1. Item 3
-   1. Item 3a
-   1. Item 3b
+1. Tworzenie i autoryzacja użytkownika
+   1. Rejestracja
+   1. Logowanie
 
-2.1 Dodawanie zadań
-2.2 Lista zadań
-2.3 Edycja statusów
-
+1. Zarządzanie Taskami
+   1. Dodawanie zadań
+   1. Wyświetlanie zadań
+   1. Edycja statsów
 
   Aplikacja pozwala zalogowanym użytkownikom na kontrolę własnych zadań służbowych poprzez magazynowanie danych o nich oraz możliwość interakcji z nimi.
 
