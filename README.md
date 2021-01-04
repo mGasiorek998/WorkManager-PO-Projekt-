@@ -108,7 +108,7 @@
    * Email
    * Hasło
    ```cs
-      private void LoginButton_Click( object sender, RoutedEventArgs e ) {
+        private void LoginButton_Click( object sender, RoutedEventArgs e ) {
             // Get the Form inputs values:
             String email, password;
             email = LoginEmail.Text;
@@ -128,6 +128,17 @@
                 MessageBox.Show("Niepoprawna nazwa użytkownika albo hasło!");
             }
         }
+        private User CheckIfUserExists(String email) {
+            var users = userRepo.GetAll();
+            
+            foreach (User user in users) {
+                if(user.Email == email) {
+                    return user;
+                }
+            }
+            return null;
+        }
+        
    ```
    Po zweryfikowaniu czy dany użytkownik istnieje w bazie zostaje on przekierowany do swojej listy.
 
