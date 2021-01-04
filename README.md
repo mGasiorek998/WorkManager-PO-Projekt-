@@ -4,8 +4,8 @@
 ### --FUNKCJONALNOŚCI WORKMANAGER--
 
 1. Tworzenie konta i Autoryzacja użytkownika
-1. Rejestracja 
-1. Logowanie
+  1. Rejestracja 
+  1. Logowanie
 
 2.1 Dodawanie zadań
 2.2 Lista zadań
