@@ -97,8 +97,8 @@
    ```
    #### Logowanie
    Aby zalogować się na swoje konto użytkownik musi podać:
-   *Email
-   *Hasło
+   * Email
+   * Hasło
    
    Po zweryfikowaniu czy dany użytkownik istnieje w bazie zostaje on przekierowany do swojej listy.
 
