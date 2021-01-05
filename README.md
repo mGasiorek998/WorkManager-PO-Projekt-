@@ -20,9 +20,169 @@
 
 ### KOMUNIKACJA APLIKACJI Z BAZĄ DANCYH
    #### Modele
+   Modele, które zostały wykorzystane do stworzenia aplikacji to:
+   ##### User
+   ```cs
+   namespace WorkManager.Models {
+    public class User {
+        [Key]
+        public int Id {get; set;}
+        
+        [Required]
+        [MaxLength(50)]
+        public String Email { get; set; }
+        
+        [Required]
+        [MaxLength(20)]
+        public String Username { get; set; }
 
+        [Required]
+        [MaxLength(20)]
+        public String Password { get; set; }
+    }
+}
+   ```
+   Każdy użytknownik ma:
+   * ID
+   * Email
+   * Username
+   * Password
+   
+   ##### Task
+   ```cs
+   namespace WorkManager.Models
+   {
+    class Task {
+          [Key]
+          public int Id { get; set; }
+
+          [Required]
+          public int userID { get; set; }
+
+          [Required]
+          [MaxLength(100)]
+          public String TaskTitle { get; set; }
+
+          [Required]
+          [MaxLength(420)]
+          public String TaskDesc { get; set; }
+
+          public DateTime CreationDate { get; set; }
+
+          [Required]
+          public DateTime DueDate { get; set; }
+
+          [Required]
+          public String Status { get; set; }
+
+       }
+   }
+```
+    Każde zadanie ma:
+   * ID
+   * Tytuł
+   * Opis
+   * Date utworzenia
+   * Deadline
+   * Status
+   * UserId
+   
+   Dzięki polu userID po wczytywaniu listy zadań wyświetlają się tylko i wyłącznie zadania stworzone przez użytkownika.
+   ```cs
+   public IEnumerable<Models.Task> GetUsersTasks(int userId) {
+            var query = this._context.Tasks
+                .Where(t => t.userID == userId);
+
+            return query.ToList();
+        }
+   ```
    #### Repozytoria
+   Każdy z Modeli porozumiewa się z bazą danych za pomocą swoich repozytoriów.
+   
+   #### UserRepository
+   ```cs
+   namespace WorkManager.Data {
+    class UserRepository : IRepository<User> {
 
+        private readonly wmDBContext _context;
+
+        public UserRepository( wmDBContext context ) {
+            this._context = context;
+        }
+
+        public bool Add( User entity ) {
+            this._context.Users.Add(entity);
+            return true;
+        }
+
+        public IEnumerable<User> GetAll() {
+            return this._context.Users.ToList();
+        }
+
+        public User GetById( int id ) {
+            return this._context.Users.Find(id);
+        }
+
+        public User GetByEmail(String email) {
+            User user = this._context.Users.Find(email);
+
+            return user;
+        }
+
+        public void Save() {
+            this._context.SaveChanges();
+        }
+    }
+}
+   ```
+   
+   #### TaskRepository
+   ```cs
+   namespace WorkManager.Data
+{
+    class TaskRepository : IRepository<Models.Task>
+    {
+        private readonly wmDBContext _context;
+
+        public TaskRepository( wmDBContext context )
+        {
+            this._context = context;
+        }
+
+        public bool Add(Models.Task entity)
+        {
+            this._context.Tasks.Add(entity);
+            return true;
+        }
+
+        public IEnumerable<Models.Task> GetAll()
+        {
+            return this._context.Tasks.ToList();
+        }
+
+        public Models.Task GetById(int id)
+        {
+            return this._context.Tasks.Find(id);
+        }
+
+        public void RemoveTask(Models.Task entity) {
+            this._context.Tasks.Remove(entity);
+        }
+
+        public IEnumerable<Models.Task> GetUsersTasks(int userId) {
+            var query = this._context.Tasks
+                .Where(t => t.userID == userId);
+
+            return query.ToList();
+        }
+
+        public void Save()
+        {
+            this._context.SaveChanges();
+        }
+    }
+}
+   ```
 ### REJESTRACJA I AUTORYZACJA UŻYTKOWNIKA
    #### Rejestracja
    Za nim użytkownich będzie mógł zacząć korzystać z Work Managera będzie on musiał założyć kotno podając:
@@ -146,14 +306,92 @@
 
 #### Dodawanie zadań
 Poprzez wypełnienie na formularzu TaskCreation pól tekstowych Title i Description oraz wybranie terminu, przed którym zrealizowany powinien zostać dany cel, użytkownik może dodać zadanie. Wszystkie z wymienionych wartości są wartościami wymaganymi, a aplikacja nie dopuści do przypadku, w którym dodane zostaje zagadanienie o niepełnych danych. 
+```cs 
+// Check if correct dueDate was passed:
+            try {
+                dueDate = (DateTime)DueDateCalendar.SelectedDate;
+            } catch(InvalidOperationException err) {
+                MessageBox.Show("NIE ZAZNACZONO DATY TERMINU!");
+                return;
+            }
+            
+```
+```cs
+private bool ValidateTask(string title, string description, DateTime dueDate)
+        {
+            if (title == "" || description == "")
+            {
+                MessageBox.Show("Fill out the required fields");
+                return false;
+            }
+            else return true;
+        }
+```
+
 Po wypełnieniu wyżej wymienionych pól wymaganych, zadanie można dodać poprzez kliknięcie przycisku ADD. W przypadku powodzenia przeprowadzonej operacji, wyświetlone zostaje okno świadczące o sukcesie, rekord zadania zapisany jest w bazie danych z unikatowym identyfikatorem (zarówno własnym jak i użytkownika, który je stworzył), a dodana powinność wyświetla się na liście ze statusem New.
+```cs
+if (isTaskValid)
+            {
+                //Buid a new Task
+                TaskBuilder builder = new TaskBuilder();
+
+                builder.SetTaskTitle(title)
+                    .SetTaskDesc(description)
+                    .SetCreationDate()
+                    .SetDueDate(dueDate)
+                    .SetUserId(currentUser.Id)
+                    .SetStatus(TaskStatus.New.ToString());
+
+                Models.Task newTask = builder.Build();
+
+                // Add it to the repo:
+                taskRepo.Add(newTask);
+                taskRepo.Save();
+
+                MessageBox.Show("Task created succesfully!");
+                reloadTaskList();
+            }
+```
 
 #### Lista zadań
 Jeżeli dany użytkownik pomyślnie przeszedł proces dodawania zadań, swoje postępy będzie mógł zaobserwować na liście zadań. Wyświetlane są na niej dane kluczowe dla użytkownika. Widzi on zarówno skrótowe tytuły, jak i bardziej konkretne opisy swoich zadań, a także datę, przed którą powinien je ukończyć. Do listy dodać można nieskończoną ilość wierszy. Jednak aby uniknąć sytuacji nadwyraz długiej listy, kiedy w ostatniej kolumnie danego zadania pojawi się status Done - przy następnym logowaniu nie będzie ono już widoczne - zostanie usunięte.
+```cs
+private void reloadTaskList()
+        {
+            // Get all logged in user tasks:
+            var tasks = taskRepo.GetUsersTasks(this.currentUser.Id);
+            
+            // Check if any task has 'DONE' Status if so delete it from database:
+            foreach (Models.Task task in tasks) {
+                if (Enum.Parse(typeof(TaskStatus), task.Status).Equals(TaskStatus.Done)) {
+                    taskRepo.RemoveTask(task);
+                }
+            }
+            this.taskRepo.Save();
 
+            // Attached them to ListView
+            ListOfTasks.ItemsSource = tasks;
+        }
+```
 #### Edycja statusów.
 Najważniejszym elementem panowania nad własnymi celami jest ich status. Aplikacja umożliwia jego edycję, aby użytkownik mógł odpowiednio oznaczać swoje zadania zgodnie z faktycznym stanem ich realizacji. Po wybraniu wiersza na rejestrze, w lewym dolnym rogu okna aplikacji wybrać można z rozwijanej listy jeden z 4 statusów: {New, InProgress, Postponed, Done}. Domyślną wartością jest Done, aby przyspieszyć proces pomyślnego wykonywania zadań przez pracowników. Kiedy zaznaczony jest odpowiedni wiersz i pożądany status, wybranie przycisku Change status spowoduje nadpisanie stanu zadania oraz wyświetlenie okna potwierdzającego powodzenie.
+```cs
+private void ChangeStatusButton_Click(object sender, RoutedEventArgs e)
+        {
+            Models.Task selecedtask = (Models.Task)ListOfTasks.SelectedItem;
+            TaskStatus selectedstatus = (TaskStatus)StatusDropMenu.SelectedItem;
 
+            // Check if any task was makred:
+            if(selecedtask == null) {
+                MessageBox.Show("NIE WYBRANO TASKU!");
+                return;
+            }
+            selecedtask.Status = selectedstatus.ToString();
+            taskRepo.Save();
+            MessageBox.Show("Status changed succesfully!");
+            reloadTaskList();
+        }
+```
 ### UŻYTE TECHNOLOGIE:
 C#
 WPF
