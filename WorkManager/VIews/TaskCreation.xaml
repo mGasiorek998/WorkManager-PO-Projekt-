@@ -1,4 +1,4 @@
-﻿<Window x:Class="WorkManager.VIews.TaskCreation"
+<Window x:Class="WorkManager.VIews.TaskCreation"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -17,10 +17,10 @@
             Width="1007" Initialized="ListOfTasks_Initialized">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Title" Width="175" DisplayMemberBinding="{Binding TaskTitle}"/>
-                    <GridViewColumn Header="Description" Width="600" DisplayMemberBinding="{Binding TaskDesc}"/>
-                    <GridViewColumn Header="Due Date" Width="140" DisplayMemberBinding="{Binding DueDate}"/>
-                    <GridViewColumn Header="Status" Width="90" DisplayMemberBinding="{Binding Status}"/>
+                    <GridViewColumn Header="Title" Width="180" DisplayMemberBinding="{Binding TaskTitle}"/>
+                    <GridViewColumn Header="Description" Width="500" DisplayMemberBinding="{Binding TaskDesc}"/>
+                    <GridViewColumn Header="Due Date" Width="250" DisplayMemberBinding="{Binding DueDate}"/>
+                    <GridViewColumn Header="Status" Width="auto" DisplayMemberBinding="{Binding Status}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -30,10 +30,10 @@
             x:Name="AddTaskButton" 
             Content="ADD" 
             HorizontalAlignment="Left" 
-            Margin="913,87,0,0" 
+            Margin="917,84,0,0" 
             VerticalAlignment="Top" 
-            Width="104" 
-            Height="109" 
+            Width="100" 
+            Height="100" 
             FontSize="30" Click="AddTaskButton_Click"/>
 
         <!--Title TextBox-->
@@ -51,8 +51,8 @@
         <TextBox 
             x:Name="AddDescription"
             HorizontalAlignment="Left" 
-            Height="109" 
-            Margin="10,87,0,0" 
+            Height="126" 
+            Margin="10,84,0,0" 
             TextWrapping="Wrap"  
             VerticalAlignment="Top" 
             Width="636" 
@@ -69,7 +69,7 @@
 
         <!--Top Box labels-->
         <Label Content="Title" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.12,0.63"/>
-        <Label Content="Description" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+        <Label Content="Description" HorizontalAlignment="Left" Margin="10,62,0,0" VerticalAlignment="Top"/>
         <Label Content="Due date" HorizontalAlignment="Left" Margin="673,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.362,0.44"/>
 
         <!--List label-->
