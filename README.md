@@ -2,8 +2,8 @@
 ## Projekt zaliczeniowy "Programowanie Obiektowe"
 
 ## Spis Treści
-1. Opis aplikacji
-1. Komunikacja aplikacji z bazą danych
+1. (https://github.com/mGasiorek998/WorkManager/blob/main/README.md#opis-aplikacji Opis Aplikacji)
+1. #Komunikacja aplikacji z bazą danych
    1. Modele
    1. Repozytoria
 1. Tworzenie i autoryzacja użytkownika
