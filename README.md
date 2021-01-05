@@ -2,18 +2,18 @@
 ## Projekt zaliczeniowy "Programowanie Obiektowe"
 
 ## Spis Treści
-1. (https://github.com/mGasiorek998/WorkManager/blob/main/README.md#opis-aplikacji Opis Aplikacji)
-1. #Komunikacja aplikacji z bazą danych
-   1. Modele
-   1. Repozytoria
-1. Tworzenie i autoryzacja użytkownika
-   1. Rejestracja
-   1. Logowanie
-1. Zarządzanie Taskami
-   1. Dodawanie zadań
-   1. Wyświetlanie zadań
-   1. Edycja statsów
-1. Użyte Technologie
+1. [Opis Aplikacji](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#opis-aplikacji)
+1. [Komunikacja aplikacji z bazą danych](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#komunikacja-aplikacji-z-baz%C4%85-dancyh)
+   1. [Modele](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#modele)
+   1. [Repozytoria](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#repozytoria)
+1. [Tworzenie i autoryzacja użytkownika](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#rejestracja-i-autoryzacja-u%C5%BCytkownika)
+   1. [Rejestracja](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#rejestracja)
+   1. [Logowanie](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#logowanie)
+1. [Zarządzanie Taskami](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#zarz%C4%85dzanie-zadaniami)
+   1. [Dodawanie zadań](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#dodawanie-zada%C5%84)
+   1. [Wyświetlanie zadań](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#lista-zada%C5%84)
+   1. [Edycja statsów](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#edycja-status%C3%B3w)
+1. [Użyte Technologie](https://github.com/mGasiorek998/WorkManager/blob/main/README.md#u%C5%BCyte-technologie)
    
 ### OPIS APLIKACJI
    Aplikacja umożliwa lepszą organizację pracy. Użytkownik w prosty sposób będzie mógł dodawać do swojej listy zadania, a potem zmieniać ich statusy. 
